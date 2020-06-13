@@ -39,7 +39,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
       <View style={styles.navbar}>
-        <Text style={styles.text}>InstaShort</Text>
+        <Text style={styles.text}>InstaSort</Text>
       </View>
 
       <View style={{
