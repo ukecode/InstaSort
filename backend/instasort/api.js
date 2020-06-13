@@ -49,5 +49,4 @@ async function getFullusernames(link){
  }
 
 
- module.exports = getFullusernames()
-
+ module.exports = { getFullusernames } 
