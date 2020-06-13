@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Dimensions, TextInput, Button, TouchableOpacity, FlatList, StatusBar } from 'react-native';
+//import api from './api/main';
 
 
 function DataList({ title }) {
@@ -12,8 +13,11 @@ function DataList({ title }) {
 
 
 export default function App() {
-  const [name, setName] = useState('');
-  const data = [
+
+  const [data, setData] = useState('');
+  const [url, setUrl] = useState('');
+
+  const datas = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       title: 'Kelviny Henrique',
@@ -29,12 +33,19 @@ export default function App() {
   ];
 
   const handleSort = () => {
-    alert("Aqui");
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => setData(json.movies))
+      .catch((error) => console.error(error))
   }
 
+
   const handleReset = () => {
-    alert("Aqui2");
+    setData('');
+    setUrl('');
   }
+
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
@@ -47,7 +58,7 @@ export default function App() {
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <TextInput style={styles.inputText} />
+        <TextInput style={styles.inputText} value={url} onChangeText={(e) => setUrl(e)} />
 
         <View style={styles.viewbutton}>
           <TouchableOpacity style={styles.button} onPress={handleSort}>
